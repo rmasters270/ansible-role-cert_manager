@@ -1,5 +1,6 @@
 galaxy_info:
   author: rmasters270
+  role_name: cert_manager
   description: Install Cert Manager Helm Chart
   company: none
   license: MIT

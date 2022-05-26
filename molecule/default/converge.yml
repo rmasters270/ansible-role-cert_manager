@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include rmasters270.cert_manager"
+      include_role:
+        name: "rmasters270.cert_manager"

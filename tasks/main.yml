@@ -1,0 +1,17 @@
+---
+
+- name: Add Cert Manager repository
+  kubernetes.core.helm_repository:
+    name: '{{ cert_manager_repository.name }}'
+    repo_url: '{{ cert_manager_repository.url }}'
+
+- name: Install Cert Manager
+  kubernetes.core.helm:
+    name: cert-manager
+    chart_ref: jetstack/cert-manager
+    chart_version: '{{ cert_manager_repository.version }}'
+    release_namespace: cert-manager
+    create_namespace: true
+    update_repo_cache: true
+    values:
+      installCRDs: true

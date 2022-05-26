@@ -1,0 +1,16 @@
+galaxy_info:
+  author: rmasters270
+  description: Install Cert Manager Helm Chart
+  company: none
+  license: MIT
+  min_ansible_version: '2.1'
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+
+  galaxy_tags: [kubernetes, k3s, helm, cert, certmanager]
+
+dependencies:
+  - role: rmasters270.helm

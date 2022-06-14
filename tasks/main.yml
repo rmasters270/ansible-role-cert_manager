@@ -15,3 +15,25 @@
     update_repo_cache: true
     values:
       installCRDs: true
+
+- name: Create self-signed cluster issuer
+  kubernetes.core.k8s:
+    template: self-clusterissuer.yaml.j2
+
+- name: Create Cloudflare api key secret
+  kubernetes.core.k8s:
+    template: cloudflare-secret.yaml.j2
+
+- name: Create Lets Encrypt production cluster issuer with Cloudflare credentials
+  kubernetes.core.k8s:
+    template: acme-clusterissuer.yaml.j2
+  vars:
+    cluster_issuer_name: '{{ letsencrypt.prod.cluster_issuer }}'
+    cert_issuer_server: '{{ letsencrypt.prod.server }}'
+
+- name: Create Lets Encrypt staging cluster issuer with Cloudflare credentials
+  kubernetes.core.k8s:
+    template: acme-clusterissuer.yaml.j2
+  vars:
+    cluster_issuer_name: '{{ letsencrypt.staging.cluster_issuer }}'
+    cert_issuer_server: '{{ letsencrypt.staging.server }}'

@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: {{ cluster_issuer_name }}
+spec:
+  acme:
+    email: {{ letsencrypt.email }}
+    server: {{ cert_issuer_server }}
+
+    privateKeySecretRef:
+      name: issuer-account-key
+    solvers:
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: {{ cloudflare_kubernetes_secret }}
+              key: email
+            apiTokenSecretRef:
+              name: {{ cloudflare_kubernetes_secret }}
+              key: api-token

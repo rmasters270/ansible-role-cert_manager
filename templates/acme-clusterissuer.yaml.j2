@@ -13,8 +13,8 @@ spec:
       - dns01:
           cloudflare:
             apiTokenSecretRef:
-              name: {{ cloudflare_kubernetes_secret }}
+              name: cloudflare-api-key-secret
               key: email
             apiTokenSecretRef:
-              name: {{ cloudflare_kubernetes_secret }}
+              name: cloudflare-api-key-secret
               key: api-token

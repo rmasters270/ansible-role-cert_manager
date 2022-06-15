@@ -6,7 +6,6 @@ cert_manager_repository:
   url: https://charts.jetstack.io
   version: v1.8.0
 
-cloudflare_kubernetes_secret: cloudflare-api-key-secret
 cloudflare_email: user@example.com
 cloudflare_key: Your-Cloudflare-APIKey
 

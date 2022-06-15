@@ -4,7 +4,7 @@ metadata:
   name: {{ _cluster_issuer_name }}
 spec:
   acme:
-    email: {{ letsencrypt.email }}
+    email: {{ letsencrypt_email }}
     server: {{ _cert_issuer_server }}
 
     privateKeySecretRef:

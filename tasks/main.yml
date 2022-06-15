@@ -28,12 +28,12 @@
   kubernetes.core.k8s:
     template: acme-clusterissuer.yaml.j2
   vars:
-    cluster_issuer_name: '{{ letsencrypt.prod.cluster_issuer }}'
-    cert_issuer_server: '{{ letsencrypt.prod.server }}'
+    _cluster_issuer_name: '{{ letsencrypt.prod.cluster_issuer }}'
+    _cert_issuer_server: '{{ letsencrypt.prod.server }}'
 
 - name: Create Lets Encrypt staging cluster issuer with Cloudflare credentials
   kubernetes.core.k8s:
     template: acme-clusterissuer.yaml.j2
   vars:
-    cluster_issuer_name: '{{ letsencrypt.staging.cluster_issuer }}'
-    cert_issuer_server: '{{ letsencrypt.staging.server }}'
+    _cluster_issuer_name: '{{ letsencrypt.staging.cluster_issuer }}'
+    _cert_issuer_server: '{{ letsencrypt.staging.server }}'

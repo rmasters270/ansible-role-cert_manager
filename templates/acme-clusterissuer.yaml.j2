@@ -1,11 +1,11 @@
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
-  name: {{ cluster_issuer_name }}
+  name: {{ _cluster_issuer_name }}
 spec:
   acme:
     email: {{ letsencrypt.email }}
-    server: {{ cert_issuer_server }}
+    server: {{ _cert_issuer_server }}
 
     privateKeySecretRef:
       name: issuer-account-key

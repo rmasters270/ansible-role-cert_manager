@@ -1,38 +1,106 @@
-Role Name
-=========
+# Cert Manager
 
-A brief description of the role goes here.
+Install Cert Manager on a Kubernetes cluster. Includes three certificate issuers: Self-Signed, Let's Encrypt Staging, and Let's Encrypt Production. The Let's Encrypt issuers use a Cloudflare DNS challenge.
 
-Requirements
-------------
+## Requirements
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+### Localhost
 
-Role Variables
---------------
+The role is intended to run from the Ansible controller.  If the playbook is executed on a different host it will fail because the templates must be copied to the target host.
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+### Kube Config
 
-Dependencies
-------------
+The host and user running the playbook must have kube config configured.
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+### Helm
 
-Example Playbook
-----------------
+The host must have the Helm package manager installed.
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+### Cloudflare
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+The Let's Encrypt ACME certificate issuers use a Cloudflare API token to invoke a DNS challenge.  If you are using a different DNS provider Let's Encrypt may not work.
 
-License
--------
+The Let's Encrypt API token must have `Zone:Read, DNS:Edit` permissions for the requested domain.
 
-BSD
+## Role Variables
 
-Author Information
-------------------
+### cert_manager_namespace
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Change the Kubernetes namespace for Cert Manager.
+
+default: `cert-manager`
+
+### cert_manager_repo_name
+
+Name of the Helm repository.
+
+default: `jetstack`
+
+### cert_manager_repo_url
+
+Url pointing to the Helm repository.
+
+default: `https://charts.jetstack.io`
+
+### cert_manager_repo_version
+
+Chart version in the repository.
+
+The default value is pinned to the latest version at the time of writing.  Use `helm search repo cert-manager` to list all versions of the chart.
+
+default: `v1.8.0`
+
+### cloudflare_email
+
+Email address for your cloudflare account.
+
+### cloudflare_key
+
+The Clouflare account key or token.  For security purposes a token is recommended.
+
+### letsencrypt_email
+
+Email address for Let's Encrypt.
+
+### letsencrypt
+
+Holds Let's Encrypt environment values for the cluster issuer and the respective server.
+
+```yaml
+  letsencrypt:
+    prod:
+      cluster_issuer: letsencrypt-prod
+      server: https://acme-v02.api.letsencrypt.org/directory
+    staging:
+      cluster_issuer: letsencrypt-staging
+      server: https://acme-staging-v02.api.letsencrypt.org/directory
+```
+
+## Dependencies
+
+Use `rmasters270.helm` role or install `kubernetes cli` and `helm` manually on the host.
+
+Setup `kube config` for the user account and host.
+
+## Example Playbook
+
+```yaml
+- hosts: localhost
+
+  vars:
+    cloudflare_email: email.address@example.com
+    cloudflare_key: o9Sp1wtRZ8waDPZZP8-ZPYwquO7S5GgDaAx-q06d
+    letsencrypt_email: email.address@example.com
+
+  roles:
+    - rmasters270.helm
+    - rmasters270.cert_manager
+```
+
+## License
+
+MIT
+
+## Author Information
+
+Ryan Masters

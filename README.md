@@ -54,7 +54,7 @@ default: `v1.8.0`
 
 Email address for your cloudflare account.
 
-### cloudflare_key
+### cloudflare_token
 
 The Clouflare account key or token.  For security purposes a token is recommended.
 
@@ -89,7 +89,7 @@ Setup `kube config` for the user account and host.
 
   vars:
     cloudflare_email: email.address@example.com
-    cloudflare_key: o9Sp1wtRZ8waDPZZP8-ZPYwquO7S5GgDaAx-q06d
+    cloudflare_token: o9Sp1wtRZ8waDPZZP8-ZPYwquO7S5GgDaAx-q06d
     letsencrypt_email: email.address@example.com
 
   roles:

@@ -20,7 +20,7 @@
   kubernetes.core.k8s:
     template: self-clusterissuer.yaml.j2
 
-- name: Create Cloudflare api key secret
+- name: Create Cloudflare API key secret
   kubernetes.core.k8s:
     template: cloudflare-secret.yaml.j2
 

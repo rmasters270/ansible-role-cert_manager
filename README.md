@@ -31,7 +31,7 @@ The Let's Encrypt API token must have `Zone:Read, DNS:Edit` permissions for the 
 | cert_manager_namespace    | yes      | cert-manager                 | Kubernetes namespace                                                        |
 | cert_manager_repo_name    | yes      | jetstack                     | Helm repository name                                                        |
 | cert_manager_repo_url     | yes      | <https://charts.jetstack.io> | Helm repository URL                                                         |
-| cert_manager_repo_version | yes      | v1.8.0                       | [Helm chart version](https://github.com/cert-manager/cert-manager/releases) |
+| cert_manager_repo_version | yes      | v1.13.1                      | [Helm chart version](https://github.com/cert-manager/cert-manager/releases) |
 | cloudflare_email          | yes      | <user@example.com>           | Cloudflare email account                                                    |
 | cloudflare_token          | yes      | Your-Cloudflare-Token        | Cloudflare token (recommended) or key                                       |
 | letsencrypt_email         | yes      | <user@example.com>           | Lets Encrypt email address                                                  |

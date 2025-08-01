@@ -1,4 +1,6 @@
-# Cert Manager
+# DEPRECATED: Cert Manager
+
+***This role will be depreciated use the collection, [rmasters270.kubernetes](https://github.com/rmasters270/ansible-collection-kubernetes).***
 
 Install Cert Manager on a Kubernetes cluster. Includes three certificate issuers: Self-Signed, Let's Encrypt Staging, and Let's Encrypt Production. The Let's Encrypt issuers use a Cloudflare DNS challenge.
 
